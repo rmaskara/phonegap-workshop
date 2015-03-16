@@ -20,10 +20,12 @@ var app = {
     }
 },
     initialize: function() {
-        this.store = new MemoryStore();
+       this.store = new MemoryStore(function() {
+        self.showAlert('Store Initialized', 'Info');
+    });
         $('.search-key').on('keyup', $.proxy(this.findByName, this));
     }
 
 };
 
-app.initialize();
+app.initialize(LocalStorageStore);
